@@ -4,11 +4,7 @@
       <CompTitle></CompTitle>
 
       <b-row>
-        <CompControl
-          v-bind:orderBy="orderBy"
-          v-bind:orderDir="orderDir"
-          v-on:handleSort="handleSort"
-        ></CompControl>
+        <CompControl></CompControl>
 
         <CompForm
           v-on:handleAddNewtask="handleAddNewtask"
@@ -43,44 +39,10 @@ export default {
   },
   data () {
     return {
-      //listTask: [],
-      //isShowForm: false,
-      //strSearch: '',
-      orderBy: 'name',
-      orderDir: 'asc',
       taskSelected: null
     }
   },
-  computed: {
-    // listTaskSearch(){
-    //   const {strSearch} = this;
-    //   const newItems = this.listTask.filter( item => {
-    //     let lowerName = item.name.toLowerCase();
-    //     let lowerSubString = strSearch.toLowerCase();
-    //     return lowerName.includes(lowerSubString);
-    //   });
-    //   return newItems;
-    // },
-    listTaskSort(){
-      var listTask = [...this.listTaskSearch];
-      listTask.sort(this.compareSort);
-      return listTask;
-    }
-  },
   methods: {
-    handleSort(data){
-      this.orderBy = data.orderBy;
-      this.orderDir = data.orderDir;
-    },
-    compareSort(a, b){
-      var numberSort = this.orderDir === 'asc' ? -1 : 1;
-      if(a[this.orderBy] < b[this.orderBy]){
-        return numberSort;
-      }if(a[this.orderBy] > b[this.orderBy]){
-        return numberSort * (-1);
-      }
-      return 0;
-    },
     handleDelete(taskDelete){
       var newItems = this.listTask.filter(function(task){
         return task.id !== taskDelete.id;
@@ -98,7 +60,7 @@ export default {
       let index = this.listTask.findIndex(function(item){
         return item.id === taskEdit.id
       });
-      console.log('index => ', index);
+      // console.log('index => ', index);
 
       if(this.listTask[index].id === taskEdit.id){
         this.listTask.splice(index, 1, taskEdit);

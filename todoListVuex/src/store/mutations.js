@@ -8,10 +8,15 @@ export default {
     //   this.taskSelected = null;
     // }
     state.isShowForm = !state.isShowForm;
-    console.log('Mutation TOGGLE_FORM');
+    //console.log('Mutation TOGGLE_FORM');
   },
   HANDLE_SEARCH(state, strSearch){
-    console.log('Mutation HANDLE_SEARCH', strSearch);
+    //console.log('Mutation HANDLE_SEARCH', strSearch);
     state.strSearch = strSearch;
+  },
+  HANDLE_SORT(state, { orderBy, orderDir }){
+    console.log('Mutation HANDLE_SORT', orderBy, orderDir);
+    state.orderBy = orderBy;
+    state.orderDir = orderDir;
   }
 }

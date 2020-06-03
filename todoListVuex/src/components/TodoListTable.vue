@@ -49,14 +49,14 @@ export default {
 
     //Cách 2 object
     ...mapGetters({
-      'listTask': 'listTaskSearch'
+      'listTask': 'listTaskSearchSort'
     })
   },
   watch: {
     listTask: function(newTask){
       var taskString = JSON.stringify(newTask);
       localStorage.setItem('tasks', taskString);
-      console.log('Watch taskString =>', taskString);
+      //console.log('Watch taskString =>', taskString);
     }
   },
   created() {
