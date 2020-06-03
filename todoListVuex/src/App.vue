@@ -5,16 +5,12 @@
 
       <b-row>
         <CompControl
-          v-bind:strSearch="strSearch"
-
           v-bind:orderBy="orderBy"
           v-bind:orderDir="orderDir"
           v-on:handleSort="handleSort"
         ></CompControl>
 
         <CompForm
-
-
           v-on:handleAddNewtask="handleAddNewtask"
           v-bind:taskSelected="taskSelected"
           v-on:handleEditTaskById="handleEditTaskById"
@@ -49,22 +45,22 @@ export default {
     return {
       //listTask: [],
       //isShowForm: false,
-      strSearch: '',
+      //strSearch: '',
       orderBy: 'name',
       orderDir: 'asc',
       taskSelected: null
     }
   },
   computed: {
-    listTaskSearch(){
-      const {strSearch} = this;
-      const newItems = this.listTask.filter( item => {
-        let lowerName = item.name.toLowerCase();
-        let lowerSubString = strSearch.toLowerCase();
-        return lowerName.includes(lowerSubString);
-      });
-      return newItems;
-    },
+    // listTaskSearch(){
+    //   const {strSearch} = this;
+    //   const newItems = this.listTask.filter( item => {
+    //     let lowerName = item.name.toLowerCase();
+    //     let lowerSubString = strSearch.toLowerCase();
+    //     return lowerName.includes(lowerSubString);
+    //   });
+    //   return newItems;
+    // },
     listTaskSort(){
       var listTask = [...this.listTaskSearch];
       listTask.sort(this.compareSort);
@@ -72,15 +68,6 @@ export default {
     }
   },
   methods: {
-    // toggleForm(){
-    //   if(this.isShowForm){
-    //     this.taskSelected = null;
-    //   }
-    //   this.isShowForm = !this.isShowForm;
-    // },
-    // handleSearch(data){
-    //   this.strSearch = data;
-    // },
     handleSort(data){
       this.orderBy = data.orderBy;
       this.orderDir = data.orderDir;
