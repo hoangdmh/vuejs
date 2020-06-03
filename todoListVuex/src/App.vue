@@ -6,7 +6,7 @@
       <b-row>
         <CompControl
           v-bind:strSearch="strSearch"
-          v-on:handleSearch="handleSearch"
+
           v-bind:orderBy="orderBy"
           v-bind:orderDir="orderDir"
           v-on:handleSort="handleSort"
@@ -48,7 +48,7 @@ export default {
   data () {
     return {
       //listTask: [],
-      isShowForm: false,
+      //isShowForm: false,
       strSearch: '',
       orderBy: 'name',
       orderDir: 'asc',
@@ -78,9 +78,9 @@ export default {
     //   }
     //   this.isShowForm = !this.isShowForm;
     // },
-    handleSearch(data){
-      this.strSearch = data;
-    },
+    // handleSearch(data){
+    //   this.strSearch = data;
+    // },
     handleSort(data){
       this.orderBy = data.orderBy;
       this.orderDir = data.orderDir;

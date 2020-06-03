@@ -17,25 +17,29 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
+
 export default {
   name: 'control-search',
-  props: {
-    strSearch: {
-      type: String,
-      default: ''
-    }
-  },
   data(){
     return {
 
     }
   },
+  computed: {
+    ...mapState([
+      'strSearch'
+    ])
+  },
   methods: {
+    ...mapActions([
+      'handleSearch'
+    ]),
     handleSearch(e){
-      this.$emit('handleSearch',e.target.value);
+      this.$store.dispatch('handleSearch', e.target.value);
     },
     handleClear(e){
-      this.$emit('handleSearch', '');
+      this.$store.dispatch('handleSearch', '');
     }
   }
 }

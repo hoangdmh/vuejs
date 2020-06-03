@@ -9,5 +9,9 @@ export default {
     // }
     state.isShowForm = !state.isShowForm;
     console.log('Mutation TOGGLE_FORM');
+  },
+  HANDLE_SEARCH(state, strSearch){
+    console.log('Mutation HANDLE_SEARCH', strSearch);
+    state.strSearch = strSearch;
   }
 }

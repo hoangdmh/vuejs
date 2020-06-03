@@ -33,7 +33,7 @@
 
 <script>
 import TodoListItem from './TodoListItem';
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 
 
 export default {
@@ -42,9 +42,15 @@ export default {
     TodoListItem
   },
   computed: {
-    ...mapState([
-      'listTask'
-    ])
+    //Cách 1 array
+    // ...mapGetters([
+    //   'listTaskSearch',
+    // ])
+
+    //Cách 2 object
+    ...mapGetters({
+      'listTask': 'listTaskSearch'
+    })
   },
   watch: {
     listTask: function(newTask){
@@ -55,8 +61,6 @@ export default {
   },
   created() {
     let tasks = localStorage.getItem('tasks') || '[]';
-    //console.log('TASK => ', localStorage.getItem('tasks'));
-    //console.log('created TodoListTable.vue', JSON.parse(tasks));
     this.changeTasks(JSON.parse(tasks));
   },
   methods: {

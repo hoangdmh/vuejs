@@ -6,5 +6,9 @@ export default {
   toggleForm(context){
     console.log("Action toggleForm");
     context.commit('TOGGLE_FORM');
+  },
+  handleSearch(context, strSearch){
+    console.log("Action handleSearch");
+    context.commit('HANDLE_SEARCH', strSearch);
   }
 }

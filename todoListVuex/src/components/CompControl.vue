@@ -8,8 +8,7 @@
       ></ControlSort>
 
       <ControlSearch
-        v-bind:strSearch="strSearch"
-        v-on:handleSearch="handleSearch"
+
       ></ControlSearch>
     </div>
   </div>
@@ -22,10 +21,10 @@ import ControlSearch from './ControlSearch';
 export default {
   name: 'comp-control',
   props: {
-    strSearch: {
-      type: String,
-      default: ''
-    },
+    // strSearch: {
+    //   type: String,
+    //   default: ''
+    // },
     orderBy: {
       type: String,
       default: 'name'
@@ -45,9 +44,9 @@ export default {
     }
   },
   methods: {
-    handleSearch(data){
-      this.$emit('handleSearch',data)
-    },
+    // handleSearch(data){
+    //   this.$emit('handleSearch',data)
+    // },
     handleSort(data){
       this.$emit('handleSort', data);
     }
