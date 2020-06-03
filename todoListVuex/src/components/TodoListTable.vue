@@ -17,7 +17,6 @@
           v-bind:key="task.id"
           v-bind:task="task"
           v-bind:index="index + 1"
-          v-on:handleDelete="handleDelete"
           v-on:handleEdit="handleEdit"
         ></TodoListItem>
       </tbody>
@@ -67,9 +66,6 @@ export default {
     ...mapActions([
       'changeTasks'
     ]),
-    handleDelete(taskDelete){
-      this.$emit('handleDelete', taskDelete);
-    },
     handleEdit(taskEdit){
       this.$emit('handleEdit', taskEdit);
     }

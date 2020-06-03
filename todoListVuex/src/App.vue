@@ -14,7 +14,6 @@
       </b-row>
 
       <TodoListTable
-        v-on:handleDelete="handleDelete"
         v-on:handleEdit="handleEdit"
       ></TodoListTable>
     </b-container>
@@ -43,12 +42,6 @@ export default {
     }
   },
   methods: {
-    handleDelete(taskDelete){
-      var newItems = this.listTask.filter(function(task){
-        return task.id !== taskDelete.id;
-      });
-      this.listTask = newItems;
-    },
     handleAddNewtask(task){
       this.listTask.push(task);
     },
@@ -60,8 +53,6 @@ export default {
       let index = this.listTask.findIndex(function(item){
         return item.id === taskEdit.id
       });
-      // console.log('index => ', index);
-
       if(this.listTask[index].id === taskEdit.id){
         this.listTask.splice(index, 1, taskEdit);
       }
