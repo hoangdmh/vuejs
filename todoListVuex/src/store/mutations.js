@@ -18,5 +18,8 @@ export default {
     console.log('Mutation HANDLE_SORT', orderBy, orderDir);
     state.orderBy = orderBy;
     state.orderDir = orderDir;
+  },
+  ADD_NEW_TASK(state, task){
+    state.listTask.push(task);
   }
 }

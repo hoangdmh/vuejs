@@ -76,12 +76,9 @@ export default {
   },
   methods: {
     ...mapActions([
-      'toggleForm'
+      'toggleForm',
+      'handleAddNewtask'
     ]),
-    handleCancel(){
-      this.toggleForm();
-      this.handleResetData();
-    },
     handleAddnew(){
       let objTask = {
         id: uuidv4(),
@@ -91,9 +88,14 @@ export default {
       if(this.taskName === ''){
         alert('Vui long nhap task name')
       }else{
-        this.$emit('handleAddNewtask', objTask);
+        //this.$store.dispatch('handleAddNewtask', objTask);
+        this.handleAddNewtask(objTask);
         this.handleCancel();
       }
+    },
+    handleCancel(){
+      this.toggleForm();
+      this.handleResetData();
     },
     handleResetData(){
       this.taskName = '';

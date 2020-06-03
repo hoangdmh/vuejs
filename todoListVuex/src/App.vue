@@ -7,7 +7,6 @@
         <CompControl></CompControl>
 
         <CompForm
-          v-on:handleAddNewtask="handleAddNewtask"
           v-bind:taskSelected="taskSelected"
           v-on:handleEditTaskById="handleEditTaskById"
         ></CompForm>
@@ -42,9 +41,6 @@ export default {
     }
   },
   methods: {
-    handleAddNewtask(task){
-      this.listTask.push(task);
-    },
     handleEdit(taskEdit){
       this.isShowForm = true;
       this.taskSelected = taskEdit;

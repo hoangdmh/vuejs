@@ -1,6 +1,6 @@
 # todo
 
-> A Vue.js project
+> A Vue.js project with vuex library
 
 ## Build Setup
 
