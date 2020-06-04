@@ -55,7 +55,6 @@ export default {
     listTask: function(newTask){
       var taskString = JSON.stringify(newTask);
       localStorage.setItem('tasks', taskString);
-      //console.log('Watch taskString =>', taskString);
     }
   },
   created() {

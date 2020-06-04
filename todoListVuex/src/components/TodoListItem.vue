@@ -34,21 +34,18 @@ export default {
       type: Number
     }
   },
-  created() {
-    //console.log('todo-list-item mapLevel => ', mapLevel);
-  },
   methods: {
     ...mapActions({
-      'actionHandleDelete': 'handleDelete'
+      'actionHandleDelete': 'handleDelete',
+      'actionHandleEdit': 'handleEdit'
     }),
     handleDelete(){
       if(confirm('Ban co muon xoa task ' +this.task.name)){
-        //console.log('handleDelete =>', this.task);
         this.actionHandleDelete(this.task);
       }
     },
     handleEdit(){
-      this.$emit('handleEdit', this.task);
+      this.actionHandleEdit(this.task);
     }
   },
   computed: {

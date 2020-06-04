@@ -46,12 +46,6 @@ import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'comp-form',
-  props: {
-    taskSelected: {
-      type: Object,
-      default: null
-    }
-  },
   components: {
     FormAdd
   },
@@ -71,13 +65,15 @@ export default {
   },
   computed: {
     ...mapState([
-      'isShowForm'
+      'isShowForm',
+      'taskSelected'
     ])
   },
   methods: {
     ...mapActions([
       'toggleForm',
-      'handleAddNewtask'
+      'handleAddNewtask',
+      'handleEditTaskById'
     ]),
     handleAddnew(){
       let objTask = {
@@ -107,7 +103,7 @@ export default {
         name: this.taskName,
         level: parseInt(this.level)
       }
-      this.$emit('handleEditTaskById', objTaskEdit);
+      this.handleEditTaskById(objTaskEdit)
       this.handleResetData();
     }
   }

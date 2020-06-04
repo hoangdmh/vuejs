@@ -6,15 +6,10 @@
       <b-row>
         <CompControl></CompControl>
 
-        <CompForm
-          v-bind:taskSelected="taskSelected"
-          v-on:handleEditTaskById="handleEditTaskById"
-        ></CompForm>
+        <CompForm></CompForm>
       </b-row>
 
-      <TodoListTable
-        v-on:handleEdit="handleEdit"
-      ></TodoListTable>
+      <TodoListTable></TodoListTable>
     </b-container>
   </div>
 </template>
@@ -37,22 +32,7 @@ export default {
   },
   data () {
     return {
-      taskSelected: null
-    }
-  },
-  methods: {
-    handleEdit(taskEdit){
-      this.isShowForm = true;
-      this.taskSelected = taskEdit;
-    },
-    handleEditTaskById(taskEdit){
-      let index = this.listTask.findIndex(function(item){
-        return item.id === taskEdit.id
-      });
-      if(this.listTask[index].id === taskEdit.id){
-        this.listTask.splice(index, 1, taskEdit);
-      }
-      this.toggleForm();
+
     }
   }
 }
