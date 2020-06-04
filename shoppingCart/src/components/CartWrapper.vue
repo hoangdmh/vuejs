@@ -15,7 +15,8 @@
         </table>
       </div>
     </div>
-    <div class="alert alert-success" role="alert" id="mnotification">Updated <b>ivysaur</b></div>
+
+    <notify />
   </div>
   <!-- CART : END -->
 </template>
@@ -24,13 +25,15 @@
 import CartBodyTable from './CartBodyTable';
 import CartHeader from './CartHeader';
 import CartFooter from './CartFooter';
+import Notify from './Notify'
 
 export default {
   name: 'cart-wrapper',
   components: {
     CartBodyTable,
     CartHeader,
-    CartFooter
+    CartFooter,
+    Notify
   }
 }
 </script>
