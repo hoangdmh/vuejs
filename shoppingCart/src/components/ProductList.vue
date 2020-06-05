@@ -7,10 +7,11 @@
       </div>
       <div class="panel-body" id="list-product">
 
-        <product-item />
-        <product-item />
-        <product-item />
-        <product-item />
+        <product-item
+          v-for="item in products"
+          :product="item"
+          :key="item.id"
+        />
 
       </div>
     </div>
@@ -21,10 +22,17 @@
 <script>
 import ProductItem from './ProductItem';
 
+import { mapState } from 'vuex'
+
 export default {
   name: 'product-list',
   components: {
     ProductItem
+  },
+  computed: {
+    ...mapState({
+      products: state => state.product.productList
+    })
   }
 }
 </script>
