@@ -5,6 +5,16 @@ const toCurrency = function(value, unit= 'USD', dir = 'right'){
     return unit + ' ' + value;
   }
 }
+
+// Kiem tra xem string ep ve int co hop le hay khong? - Check quantity > 1 hay khong?
+const validateQuantity = function(quantity){
+  let num = parseInt(quantity);
+  if(num == quantity && !isNaN(num)){
+    return num >= 1;
+  }
+  return false;
+}
 export {
-  toCurrency
+  toCurrency,
+  validateQuantity
 }

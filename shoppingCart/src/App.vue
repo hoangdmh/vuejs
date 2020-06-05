@@ -8,6 +8,7 @@
 
         <cart-wrapper />
       </div>
+      <notifications group="noti" position="bottom right" />
     </div>
   </div>
 </template>
@@ -29,7 +30,14 @@ export default {
     return {
 
     }
-  }
+  },
+  // mounted(){
+  //   this.$notify({
+  //     group: 'noti',
+  //     title: 'Important message',
+  //     text: 'Hello user! This is a notification!'
+  //   });
+  // }
 }
 </script>
 

@@ -10,8 +10,8 @@
       <h4 class="media-heading">{{ product.name }}</h4>
       <p>{{ product.summary }}</p>
       <template v-if="product.canBuy">
-        <input name="quantity-product-1" type="number" value="1" min="1">
-        <a data-product="1" href="#" class="price"> {{ formatPrice }} </a>
+        <input v-model="quantity" type="text" value="1" min="1">
+        <a @click.prevent="handleBuyProduct" href="#" class="price"> {{ formatPrice }} </a>
       </template>
       <span v-else class="price">{{ formatPrice }}</span>
     </div>
@@ -20,7 +20,8 @@
 </template>
 
 <script>
-import { toCurrency } from './../helpers/index'
+import { toCurrency, validateQuantity } from './../helpers/index';
+import {NOTI_GREATER_THAN_ONE} from './../constants/config'
 
 export default {
   name: 'product-item',
@@ -30,12 +31,29 @@ export default {
       default: {}
     }
   },
+  data(){
+    return{
+      quantity: 1
+    }
+  },
   computed: {
     urlImage(){
       return '/dist/images/' + this.product.image
     },
     formatPrice(){
       return toCurrency(this.product.price, 'USD', 'right')
+    }
+  },
+  methods: {
+    handleBuyProduct(e){
+      const check = validateQuantity(this.quantity);
+      if(check){
+        var numQuatity = parseInt(this.quantity);
+        console.log('Hop le', numQuatity);
+      }else {
+        console.log('Khong hop le', numQuatity);
+        this.$notify(NOTI_GREATER_THAN_ONE);
+      }
     }
   }
 }
