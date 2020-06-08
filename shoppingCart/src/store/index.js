@@ -11,6 +11,13 @@ import ModuleProduct from './product/index';
 
 Vue.use(Vuex)
 
+const localStorage = store => {
+  store.subscribe((mutation, state) => {
+    //console.log('subscribe =>',state);
+    window.localStorage.setItem('cart', JSON.stringify(state.cart));
+  })
+}
+
 const store = new Vuex.Store({
   state,
   getters,
@@ -19,7 +26,8 @@ const store = new Vuex.Store({
   modules: {
     cart: ModuleCart,
     product: ModuleProduct
-  }
+  },
+  plugins: [localStorage]
 });
 
 // console.log('Store => ', store);
