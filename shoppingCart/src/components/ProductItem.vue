@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import { toCurrency, validateQuantity } from './../helpers/index';
 import {NOTI_GREATER_THAN_ONE} from './../constants/config'
 
@@ -45,13 +46,21 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      actBuyProduct: 'cart/actBuyProduct'
+    }),
     handleBuyProduct(e){
       const check = validateQuantity(this.quantity);
       if(check){
-        var numQuatity = parseInt(this.quantity);
-        console.log('Hop le', numQuatity);
+        //var numQuatity = parseInt(this.quantity);
+        var data= {
+          product: this.product,
+          quantity: parseInt(this.quantity)
+        }
+        this.actBuyProduct(data);
+        //this.$store.dispatch('cart/actBuyProduct', data);
       }else {
-        console.log('Khong hop le', numQuatity);
+        //console.log('Khong hop le', numQuatity);
         this.$notify(NOTI_GREATER_THAN_ONE);
       }
     }
