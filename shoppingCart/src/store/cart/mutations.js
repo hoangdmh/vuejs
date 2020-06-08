@@ -1,7 +1,13 @@
 export default {
-  CHANGE_QUANTITY: (state, {index, quantity}) => {
-    state.listCarts[index].quantity += quantity;
-    console.log(state, index, quantity);
+  CHANGE_QUANTITY: (state, {index, quantity, isReplay = false}) => {
+    //console.log('CHANGE_QUANTITY ', index, quantity, isReplay);
+    if(isReplay){
+      state.listCarts[index].quantity = quantity;
+    }else {
+      state.listCarts[index].quantity += quantity;
+    }
+
+    //console.log(state, index, quantity);
   },
   BUY_PRODUCT: (state, data) => {
     state.listCarts.push(data)

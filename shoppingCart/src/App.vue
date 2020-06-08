@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <loading v-bind:class="{ show: isLoading }" />
     <div class="container">
       <comp-title />
 
@@ -14,30 +15,28 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import CompTitle  from './components/CompTitle';
 import ProductList from './components/ProductList';
 import CartWrapper from './components/CartWrapper'
-
+import Loading from './components/Loading';
 
 export default {
   name: 'app',
   components: {
     CompTitle,
     ProductList,
-    CartWrapper
+    CartWrapper,
+    Loading
   },
   data () {
     return {
 
     }
   },
-  // mounted(){
-  //   this.$notify({
-  //     group: 'noti',
-  //     title: 'Important message',
-  //     text: 'Hello user! This is a notification!'
-  //   });
-  // }
+  computed: {
+    ...mapState(['isLoading'])
+  }
 }
 </script>
 

@@ -19,5 +19,19 @@ export default {
       return item.product.id != cartDelete.product.id
     });
     commit('CHANGE_LIST_CART', newListCart);
+  },
+  actUpdateQuantity({commit, state}, {cartUpdate, quantity}){
+    let index = state.listCarts.findIndex(function(cart){
+      return cart.product.id === cartUpdate.product.id
+    });
+    if(index != -1) {
+      let data = {
+        index,
+        quantity,
+        isReplay: true
+      }
+      //console.log('actUpdateQuantity ', index, quantity);
+      commit('CHANGE_QUANTITY', data);
+    }
   }
 }
