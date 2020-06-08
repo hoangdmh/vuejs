@@ -13,5 +13,11 @@ export default {
       commit('CHANGE_QUANTITY', {index, quantity})
     }
 
+  },
+  actDeleteCart({commit, state}, cartDelete) {
+    let newListCart = state.listCarts.filter( item => {
+      return item.product.id != cartDelete.product.id
+    });
+    commit('CHANGE_LIST_CART', newListCart);
   }
 }

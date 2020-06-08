@@ -6,13 +6,15 @@
       <td><input v-bind:value="cart.quantity" type="number" min="1"></td>
       <td><strong>{{ formatTotal }}</strong></td>
       <td>
-        <a class="label label-info update-cart-item" href="#" data-product="">Update</a>
-        <a class="label label-danger delete-cart-item" href="#" data-product="">Delete</a>
+        <a class="label label-info update-cart-item" href="#">Update</a>
+        <a v-on:click.prevent="handleDelete" class="label label-danger delete-cart-item" href="#">Delete</a>
       </td>
     </tr>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+import {NOTI_ATC_DELETE} from './../constants/config';
 import { toCurrency, validateQuantity } from './../helpers/index';
 
 export default {
@@ -35,6 +37,17 @@ export default {
     },
     formatTotal(){
       return toCurrency(this.cart.product.price * this.cart.quantity, 'USD', 'right')
+    }
+  },
+  methods: {
+    ...mapActions({
+      atcDeleteCart: 'cart/actDeleteCart'
+    }),
+    handleDelete(e){
+      if(confirm('Bạn muốn xóa đơn hàng: ' +this.cart.product.name)){
+        this.atcDeleteCart(this.cart);
+        this.$notify(NOTI_ATC_DELETE);
+      }
     }
   }
 }

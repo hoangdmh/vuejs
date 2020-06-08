@@ -1,7 +1,6 @@
 export const NOTI_EMPTY_PRODUCT = 'Empty product in your cart';
 
 export const NOTI_ATC_UPATE = 'Update successful !!';
-export const NOTI_ATC_DELETE = 'Delete successful !!';
 
 export const NOTI_GREATER_THAN_ONE = {
   group: 'noti',
@@ -15,4 +14,11 @@ export const NOTI_ATC_ADD = {
   type: 'success',
   title: 'Success!',
   text: 'Added successful !!'
+}
+
+export const NOTI_ATC_DELETE = {
+  group: 'noti',
+  type: 'warn',
+  title: 'Success!',
+  text: 'Delete successful.'
 }

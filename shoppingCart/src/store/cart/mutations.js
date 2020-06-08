@@ -5,5 +5,9 @@ export default {
   },
   BUY_PRODUCT: (state, data) => {
     state.listCarts.push(data)
+  },
+  CHANGE_LIST_CART: (state, newListCart) => {
+    //console.log('DELETE_CART', cartDelete.product.id);
+    state.listCarts = newListCart;
   }
 }
