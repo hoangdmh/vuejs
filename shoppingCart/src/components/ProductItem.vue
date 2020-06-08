@@ -22,7 +22,7 @@
 <script>
 import { mapActions } from 'vuex';
 import { toCurrency, validateQuantity } from './../helpers/index';
-import {NOTI_GREATER_THAN_ONE} from './../constants/config'
+import {NOTI_GREATER_THAN_ONE, NOTI_ATC_ADD} from './../constants/config'
 
 export default {
   name: 'product-item',
@@ -52,15 +52,15 @@ export default {
     handleBuyProduct(e){
       const check = validateQuantity(this.quantity);
       if(check){
-        //var numQuatity = parseInt(this.quantity);
         var data= {
           product: this.product,
           quantity: parseInt(this.quantity)
         }
         this.actBuyProduct(data);
         //this.$store.dispatch('cart/actBuyProduct', data);
+        this.quantity = 1;
+        this.$notify(NOTI_ATC_ADD);
       }else {
-        //console.log('Khong hop le', numQuatity);
         this.$notify(NOTI_GREATER_THAN_ONE);
       }
     }

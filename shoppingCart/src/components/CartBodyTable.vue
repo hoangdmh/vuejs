@@ -2,7 +2,12 @@
   <tbody id="my-cart-body">
     <!-- CART BODY -->
     <template v-if="items.length">
-      <cart-body-item v-for="(item, index) in items" v-bind:key="index" />
+      <cart-body-item
+        v-for="(item, index) in items"
+        v-bind:key="item.product.id"
+        v-bind:cart="item"
+        v-bind:index="index"
+      />
     </template>
 
     <tr v-else>

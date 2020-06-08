@@ -22,9 +22,9 @@ const store = new Vuex.Store({
   }
 });
 
-console.log('Store => ', store);
-console.log('Store state=> ', store.state.count);
-console.log('Store Cart state=> ', store.state.cart.count);
-console.log('Store Product state=> ', store.state.product.count);
+// console.log('Store => ', store);
+// console.log('Store state=> ', store.state.count);
+// console.log('Store Cart state=> ', store.state.cart.count);
+// console.log('Store Product state=> ', store.state.product.count);
 
 export default store;
