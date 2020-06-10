@@ -9,6 +9,7 @@ import Home from './page/Home.vue'
 import AboutUs from './page/AboutUs.vue'
 import Login from './page/Login.vue'
 import ListUser from './page/ListUser.vue'
+import NotFound from './page/NotFound.vue'
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,7 @@ const routes = [
   },
   { path: '/login', component: Login },
   { path: '/user/:id?', component: ListUser },
+  { path: '*', component: NotFound },
 ]
 
 const router = new VueRouter({
