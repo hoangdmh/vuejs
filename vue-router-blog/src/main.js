@@ -8,6 +8,7 @@ import HomePage from './page/HomePage.vue'
 import Home from './page/Home.vue'
 import AboutUs from './page/AboutUs.vue'
 import Login from './page/Login.vue'
+import ListUser from './page/ListUser.vue'
 
 Vue.use(VueRouter)
 
@@ -26,6 +27,7 @@ const routes = [
     ]
   },
   { path: '/login', component: Login },
+  { path: '/user/:id?', component: ListUser },
 ]
 
 const router = new VueRouter({
