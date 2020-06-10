@@ -5,6 +5,7 @@
         <b-navbar-nav class="ml-auto">
           <router-link to="/">Home</router-link>
           <router-link to="/about-us">About Us</router-link>
+          <router-link to="/user">User</router-link>
           <router-link to="/login">Login</router-link>
         </b-navbar-nav>
 
