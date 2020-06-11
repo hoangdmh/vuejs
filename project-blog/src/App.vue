@@ -1,10 +1,23 @@
 <template>
-  <div id="app"></div>
+  <div id="app">
+    <navigation />
+    <home-page />
+    <comp-footer />
+  </div>
 </template>
 
 <script>
+import Navigation from "./components/Navigation";
+import CompFooter from "./components/CompFooter";
+import HomePage from "./pages/HomePage";
+
 export default {
   name: "app",
+  components: {
+    Navigation,
+    CompFooter,
+    HomePage
+  },
   data() {
     return {};
   }
