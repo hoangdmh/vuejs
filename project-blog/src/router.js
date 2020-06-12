@@ -6,6 +6,9 @@ import AboutUs from './pages/AboutUs.vue'
 import Contact from './pages/Contact.vue'
 import Login from './pages/Login.vue'
 import HomePage from './pages/HomePage.vue'
+import NotFound from './pages/NotFound.vue'
+
+import store from './store'
 
 Vue.use(VueRouter)
 
@@ -33,12 +36,20 @@ const routes = [
   {
     path: '/blog-detail/:title.:id',
     name: 'blog-detail',
-    component: BlogDetail
-  }
+    component: BlogDetail,
+    beforeEnter: (to, from, next) => {
+      if (store.state.isLogin) {
+        next()
+      } else {
+        next('/login')
+      }
+    }
+  },
+  { path: '*', component: NotFound },
 ]
 
 const router = new VueRouter({
-  //mode: 'history',
+  mode: 'history',
   routes // short for `routes: routes`
 })
 

@@ -8,8 +8,8 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <h1>Login form</h1>
-          <form name="sentMessage" id="contactForm" novalidate>
+          <h1 class="mb-5">Login form</h1>
+          <form name="sentMessage" v-if="!isLogin">
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
                 <label>Email</label>
@@ -30,9 +30,13 @@
             <br />
             <div id="success"></div>
             <div class="form-group">
-              <button type="submit" class="btn btn-primary">Login</button>
+              <button v-on:click.prevent="handleLogin" type="submit" class="btn btn-primary">Login</button>
             </div>
           </form>
+          <div v-else>
+            <h4 class="mb-3">Xin chào admin</h4>
+            <button v-on:click.prevent="handleLogout" type="submit" class="btn btn-primary">Logout</button>
+          </div>
         </div>
       </div>
     </div>
@@ -40,6 +44,7 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
 import CompHeader from "../components/CompHeader";
 export default {
   name: "login",
@@ -51,6 +56,30 @@ export default {
   },
   components: {
     CompHeader
+  },
+  computed: {
+    ...mapState(["isLogin"])
+  },
+  methods: {
+    ...mapActions(["checkLogin", "checkLogout"]),
+    handleLogin() {
+      let data = {
+        email: this.email,
+        password: this.password
+      };
+      this.checkLogin(data).then(res => {
+        if (res) {
+          alert("Dang nhap thanh cong");
+          this.$router.push("/");
+        } else {
+          alert("Dang nhap that bai");
+        }
+      });
+      //console.log("Check => ", check);
+    },
+    handleLogout() {
+      this.checkLogout(false);
+    }
   }
 };
 </script>
