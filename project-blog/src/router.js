@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import BlogDetail from './pages/BlogDetail.vue'
 import AboutUs from './pages/AboutUs.vue'
 import Contact from './pages/Contact.vue'
+import Login from './pages/Login.vue'
 import HomePage from './pages/HomePage.vue'
 
 Vue.use(VueRouter)
@@ -23,6 +24,11 @@ const routes = [
     path: '/about-us',
     name: 'about-us',
     component: AboutUs
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
   },
   {
     path: '/blog-detail/:title.:id',
