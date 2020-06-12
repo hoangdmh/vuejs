@@ -1,6 +1,17 @@
 <template>
   <div>
-    <comp-header />
+    <comp-header
+      bg="/dist/img/post-bg.jpg"
+      classHeader="post-heading"
+      title="Man must explore, and this is exploration at its greatest"
+      subHeading="Problems look mighty small from 150 miles up"
+    >
+      <span class="meta">
+        Posted by
+        <a href="#">Start Bootstrap</a>
+        on August 24, 2019
+      </span>
+    </comp-header>
     <!-- Post Content -->
     <article>
       <div class="container">

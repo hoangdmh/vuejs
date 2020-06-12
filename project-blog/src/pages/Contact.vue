@@ -1,6 +1,10 @@
 <template>
   <div>
-    <comp-header />
+    <comp-header
+      bg="/dist/img/contact-bg.jpg"
+      title="Contact me"
+      subHeading="Have questions? I have answers."
+    />
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">

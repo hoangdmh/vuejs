@@ -1,6 +1,6 @@
 <template>
   <div>
-    <comp-header />
+    <comp-header bg="/dist/img/about-bg.jpg" title="About Me" subHeading="This is what I do." />
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
