@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <app-header />
+    <app-header v-if="isRenderHeader" />
     <main>
       <div class="container">
         <router-view></router-view>
       </div>
     </main>
-    <app-footer />
+    <app-footer v-if="isRenderFooter" />
   </div>
 </template>
 
@@ -22,6 +22,20 @@ export default {
   },
   data() {
     return {};
+  },
+  computed: {
+    isRenderHeader() {
+      var arrRouter = ["login", "register"];
+      var arrName = this.$route.name;
+      if (arrRouter.indexOf(arrName) !== -1) return false;
+      return true;
+    },
+    isRenderFooter() {
+      var arrRouter = ["home-page", "post-detail"];
+      var arrName = this.$route.name;
+      if (arrRouter.indexOf(arrName) !== -1) return false;
+      return true;
+    }
   }
 };
 </script>
