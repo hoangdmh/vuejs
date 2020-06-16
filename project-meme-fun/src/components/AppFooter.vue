@@ -1,5 +1,9 @@
 <template>
-  <p class="text-center pb-5">Cộng đồng chế ảnh</p>
+  <div class="ass1-footer">
+    <div class="container">
+      <p class="text-center">Cộng đồng chế ảnh ZendVN</p>
+    </div>
+  </div>
 </template>
 
 <script>
