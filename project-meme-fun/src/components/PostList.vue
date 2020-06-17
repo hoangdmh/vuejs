@@ -4,6 +4,7 @@
     <button v-if="getListPost && getListPost.length" class="load-more ass1-btn">
       <span>Xem thêm</span>
     </button>
+    <h2 v-else class="mt-5 pl-5">Không có bài viết nào</h2>
   </div>
 </template>
 
