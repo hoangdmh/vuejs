@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <loading v-bind:class="{ show: isLoading }" />
     <app-header v-if="isRenderHeader" />
     <main>
       <div class="container">
@@ -11,19 +12,24 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 import AppHeader from "./components/AppHeader";
 import AppFooter from "./components/AppFooter";
+import Loading from "./components/Loading";
 
 export default {
   name: "app",
   components: {
     AppHeader,
-    AppFooter
+    AppFooter,
+    Loading
   },
   data() {
     return {};
   },
   computed: {
+    ...mapState(["isLoading"]),
     isRenderHeader() {
       var arrRouter = ["login", "register"];
       var arrName = this.$route.name;
