@@ -12,5 +12,23 @@ export default {
     } catch (error) {
       console.log('error');
     }
+  },
+  async getListPostByCategory({ commit }, { pagesize = 6, currPage = 1, tagIndex = 1 }) {
+    try {
+      var config = {
+        params: {
+          pagesize,
+          currPage,
+          tagIndex
+        }
+      }
+      var result = await axiosInstance.get('/post/getListByCategory.php', config);
+      console.log('Result => ', result);
+      if (result.data.status === 200) {
+        commit('SET_LIST_POST', result.data.posts)
+      }
+    } catch (error) {
+      console.log('error');
+    }
   }
 }

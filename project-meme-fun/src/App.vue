@@ -36,6 +36,10 @@ export default {
       if (arrRouter.indexOf(arrName) !== -1) return false;
       return true;
     }
+  },
+  created() {
+    //console.log("Store => ", this.$store);
+    this.$store.dispatch("getListPostHasPaging", {});
   }
 };
 </script>
