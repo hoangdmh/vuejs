@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 import Sidebar from "../components/Sidebar";
 import PostItem from "../components/PostItem";
 import PostFeeling from "../components/PostFeeling";
@@ -33,6 +35,33 @@ export default {
     PostFeeling,
     PostComments,
     PostCommentAdd
+  },
+  data() {
+    return {
+      postId: this.$route.params.id
+    };
+  },
+  watch: {
+    $route(to, from) {
+      //console.log("to.params.id ", to);
+      this.postId = to.params.id;
+      this.fetchDataPostDetail();
+    }
+  },
+  methods: {
+    ...mapActions(["getPostDetailById"]),
+    fetchDataPostDetail() {
+      this.getPostDetailById(this.postId).then(res => {
+        //console.log(res);
+        if (!res.ok) {
+          this.$router.push("/");
+        }
+      });
+    }
+  },
+  created() {
+    // load lai trang lan dau tien
+    this.fetchDataPostDetail();
   }
 };
 </script>

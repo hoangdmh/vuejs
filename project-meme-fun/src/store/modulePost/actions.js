@@ -28,5 +28,30 @@ export default {
     } catch (error) {
       console.log('error');
     }
+  },
+  async getPostDetailById({ commit }, postId) {
+    commit('SET_LOADING', true);
+    console.log('PostId', postId);
+    try {
+      var result = await axiosInstance.get('/post/post.php?postid=' + postId);
+      commit('SET_LOADING', false);
+
+      if (result.data.status === 200) {
+        //console.log('Result => ', result.data.data);
+        return {
+          ok: true,
+          data: result.data.data,
+          error: null
+        }
+      }
+
+
+    } catch (error) {
+      commit('SET_LOADING', false);
+      return {
+        ok: false,
+        error: error.message
+      }
+    }
   }
 }
