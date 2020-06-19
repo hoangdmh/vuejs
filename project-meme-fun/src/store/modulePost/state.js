@@ -1,5 +1,6 @@
 export default {
   listPosts: [],
+  postListDetail: null,
   categories: [
     {
       text: 'Ảnh troll',

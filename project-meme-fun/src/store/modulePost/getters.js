@@ -4,5 +4,8 @@ export default {
   },
   getListNavigation: state => {
     return state.categories
+  },
+  getDataPostDetail: state => {
+    return state.postListDetail
   }
 }
