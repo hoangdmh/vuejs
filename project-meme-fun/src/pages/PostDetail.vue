@@ -2,11 +2,11 @@
   <div class="row">
     <div class="col-lg-8">
       <!--section-->
-      <div class="ass1-section__list">
+      <div class="ass1-section__list" v-if="getDataPostDetail.post && getDataPostDetail">
         <div class="ass1-section">
-          <post-item />
+          <post-item v-bind:post="getDataPostDetail.post" />
 
-          <post-feeling />
+          <post-feeling v-bind:tagDetail="getDataPostDetail.categories" />
         </div>
         <post-comment-add />
         <post-comments />
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 import Sidebar from "../components/Sidebar";
 import PostItem from "../components/PostItem";
@@ -40,6 +40,9 @@ export default {
     return {
       postId: this.$route.params.id
     };
+  },
+  computed: {
+    ...mapGetters(["getDataPostDetail"])
   },
   watch: {
     $route(to, from) {

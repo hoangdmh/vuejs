@@ -30,20 +30,20 @@ export default {
     }
   },
   async getPostDetailById({ commit, dispatch }, postId) {
-    console.log('Action getPostDetailById run');
+    //console.log('Action getPostDetailById run');
     commit('SET_LOADING', true);
     //console.log('PostId', postId);
     try {
       var result = await axiosInstance.get('/post/post.php?postid=' + postId);
-      commit('SET_LOADING', false);
+
 
       if (result.data.status === 200) {
-        console.log('Goi API Post detail thanh cong');
-
+        //console.log('Goi API Post detail thanh cong');
         // Goi tiep API User
         var resultUser = await dispatch('getUserById', result.data.data.post.USERID);
-        console.log('resultUser => ', resultUser);
-        //commit('POST_LIST_DETAIL', result.data.data);
+        //console.log('resultUser => ', resultUser);
+        commit('SET_LOADING', false);
+        commit('POST_LIST_DETAIL', result.data.data);
         return {
           ok: true,
           data: result.data.data,
