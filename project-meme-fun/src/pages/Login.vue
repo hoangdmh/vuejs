@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "login",
   data() {
@@ -38,8 +40,26 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["login"]),
     handleSubmitLogin(e) {
-      console.log("handleSubmitLogin");
+      let data = {
+        email: this.email,
+        password: this.password
+      };
+      this.login(data).then(res => {
+        //console.log("Res => ", res);
+        if (!res.ok) {
+          if (typeof res.error === "string") {
+            alert(res.error);
+          } else {
+            alert(res.error.join(" "));
+          }
+        } else {
+          this.$router.push("/");
+        }
+      });
+
+      //console.log("handleSubmitLogin");
     }
   }
 };

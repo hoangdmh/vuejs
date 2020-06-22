@@ -1,4 +1,5 @@
 export default {
   currentUser: null, //login
-  users: {}
+  users: {},
+  ACCESS_TOKEN: ''
 }
