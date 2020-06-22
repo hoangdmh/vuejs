@@ -1,7 +1,7 @@
 <template>
   <div class="ass1-login">
     <div class="ass1-login__logo">
-      <router-link to="/" class="ass1-logo">ZendVn Meme</router-link>
+      <router-link to="/" class="ass1-logo">Meme Fun</router-link>
     </div>
     <div class="ass1-login__content">
       <p>Đăng nhập</p>

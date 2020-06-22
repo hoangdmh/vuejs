@@ -1,7 +1,7 @@
 <template>
   <div class="ass1-login">
     <div class="ass1-login__logo">
-      <a href="index.html" class="ass1-logo">ZendVn Meme</a>
+      <a href="index.html" class="ass1-logo">Meme Fun</a>
     </div>
     <div class="ass1-login__content">
       <p>Đăng ký một tài khoản</p>

@@ -9,4 +9,9 @@ export default {
     state.ACCESS_TOKEN = token,
       state.currentUser = user
   },
+  SET_LOGOUT(state) {
+    state.ACCESS_TOKEN = '';
+    state.currentUser = null,
+      localStorage.removeItem('ACCESS_TOKEN');
+  }
 }
