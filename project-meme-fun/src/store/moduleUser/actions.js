@@ -1,4 +1,5 @@
 import axiosInstance from '../../plugins/axios'
+import { parseJwt } from '../../helpers/index';
 
 export default {
   async getUserById({ commit }, userId) {
@@ -55,6 +56,38 @@ export default {
 
     } catch (error) {
       commit('SET_LOADING', false);
+      return {
+        ok: false,
+        error: error.message
+      }
+    }
+  },
+  async checkLogin({ commit, dispatch }) {
+    try {
+      let tokenLocal = localStorage.getItem('ACCESS_TOKEN')
+      let userObj = parseJwt(tokenLocal)
+
+      // console.log('tokenLocal => ', userObj);
+
+      if (userObj) {
+        let resultUser = await dispatch('getUserById', userObj.id);
+        // console.log('resultUser => ', resultUser);
+        if (resultUser.ok) {
+          let data = {
+            user: resultUser.data,
+            token: tokenLocal
+          }
+          commit('SET_LOGIN_INFO', data);
+          return {
+            ok: true,
+            error: null
+          }
+        }
+        return {
+          ok: false
+        }
+      }
+    } catch (error) {
       return {
         ok: false,
         error: error.message

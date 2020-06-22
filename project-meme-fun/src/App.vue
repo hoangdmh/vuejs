@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 import AppHeader from "./components/AppHeader";
 import AppFooter from "./components/AppFooter";
@@ -27,6 +27,9 @@ export default {
   },
   data() {
     return {};
+  },
+  methods: {
+    ...mapActions(["checkLogin"])
   },
   computed: {
     ...mapState(["isLoading"]),
@@ -46,6 +49,7 @@ export default {
   created() {
     //console.log("Store => ", this.$store);
     this.$store.dispatch("getListPostHasPaging", {});
+    this.checkLogin();
   }
 };
 </script>
