@@ -5,10 +5,10 @@
         <router-link to="/" class="ass1-logo">Meme Fun</router-link>
         <app-navigation />
         <app-header-search />
-        <a href="#" class="ass1-header__btn-upload ass1-btn">
+        <router-link to="/upload" class="ass1-header__btn-upload ass1-btn">
           <i class="icon-Upvote"></i> Upload
-        </a>
-        <a href="dang-nhap.html" class="ass1-header__btn-upload ass1-btn">Login</a>
+        </router-link>
+        <router-link to="/login" class="ass1-header__btn-upload ass1-btn">Login</router-link>
       </div>
     </div>
   </header>

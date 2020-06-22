@@ -1,7 +1,7 @@
 <template>
   <div class="ass1-footer">
     <div class="container">
-      <p class="text-center">Cộng đồng chế ảnh ZendVN</p>
+      <p class="text-center">Cộng đồng chế ảnh</p>
     </div>
   </div>
 </template>
