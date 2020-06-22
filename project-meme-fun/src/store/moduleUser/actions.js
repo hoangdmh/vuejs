@@ -26,7 +26,7 @@ export default {
       }
     }
   },
-  async login({ commit }, { email = '', password = '' }) {
+  async login({ commit, dispatch }, { email = '', password = '' }) {
     commit('SET_LOADING', true);
     try {
       let data = {
@@ -34,19 +34,22 @@ export default {
         password: password
       }
       var result = await axiosInstance.post('/member/login.php', data);
+
       //console.log('Result Login => ', result);
       commit('SET_LOADING', false);
 
       if (result.data.status === 200) {
-        console.log('Result data => ', result.data);
+        //console.log('Result data => ', result.data);
         commit('SET_USER_INFO', result.data.user);
         commit('SET_LOGIN_INFO', result.data);
+        dispatch('getListPostByUserId', result.data.user.USERID)
 
         return {
           ok: true,
           data: result.data,
           error: null
         }
+
       } else {
         return {
           ok: false,
@@ -70,9 +73,16 @@ export default {
       // console.log('tokenLocal => ', userObj);
 
       if (userObj) {
-        let resultUser = await dispatch('getUserById', userObj.id);
+        // let resultUser = await dispatch('getUserById', userObj.id);
+        // let resultPostUser = await dispatch('getListPostByUserId', userObj.id)
         // console.log('resultUser => ', resultUser);
-        if (resultUser.ok) {
+
+        let promiseUser = dispatch('getUserById', userObj.id);
+        let promiseUserPost = dispatch('getListPostByUserId', userObj.id)
+
+        let [resultUser, resultPostUser] = await Promise.all([promiseUser, promiseUserPost]);
+
+        if (resultUser.ok && resultPostUser.ok) {
           let data = {
             user: resultUser.data,
             token: tokenLocal
@@ -96,5 +106,40 @@ export default {
   },
   async logout({ commit }) {
     commit('SET_LOGOUT');
+  },
+  async getListPostByUserId({ commit }, userid) {
+    try {
+      let config = {
+        params: {
+          userid: userid
+        },
+        headers: {
+          'accept': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('ACCESS_TOKEN')
+        }
+      }
+      var result = await axiosInstance.get('/post/getListPostUserID.php', config);
+      if (result.data.status === 200) {
+        let objData = {
+          posts: result.data.posts,
+          userid: userid
+        }
+        commit('SET_USER_POST', objData);
+        return {
+          ok: true,
+          error: null
+        }
+      }
+      return {
+        ok: false,
+        error: null
+      }
+      console.log('getListPostByUserId', result.data);
+    } catch (error) {
+      return {
+        ok: false,
+        error: error.message
+      }
+    }
   }
 }
