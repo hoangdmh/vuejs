@@ -1,5 +1,6 @@
 import axiosInstance from '../../plugins/axios'
 import { parseJwt } from '../../helpers/index';
+import { CONFIG_ACCESS_TOKEN } from '../../constants';
 
 export default {
   async getUserById({ commit }, userId) {
@@ -67,7 +68,7 @@ export default {
   },
   async checkLogin({ commit, dispatch }) {
     try {
-      let tokenLocal = localStorage.getItem('ACCESS_TOKEN')
+      let tokenLocal = localStorage.getItem(CONFIG_ACCESS_TOKEN)
       let userObj = parseJwt(tokenLocal)
 
       // console.log('tokenLocal => ', userObj);
@@ -115,7 +116,7 @@ export default {
         },
         headers: {
           'accept': 'application/json',
-          'Authorization': 'Bearer ' + localStorage.getItem('ACCESS_TOKEN')
+          'Authorization': 'Bearer ' + localStorage.getItem(CONFIG_ACCESS_TOKEN)
         }
       }
       var result = await axiosInstance.get('/post/getListPostUserID.php', config);

@@ -10,6 +10,10 @@ import PostUpload from './pages/PostUpload'
 import UserPage from './pages/UserPage'
 import UserProfile from './pages/UserProfile'
 
+import {
+  ifNotAuthenticated,
+  ifAuthenticated
+} from './plugins/authenticate';
 
 Vue.use(VueRouter)
 
@@ -22,17 +26,20 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: Login
+    component: Login,
+    beforeEnter: ifNotAuthenticated
   },
   {
     path: '/register',
     name: 'register',
-    component: Register
+    component: Register,
+    beforeEnter: ifNotAuthenticated
   },
   {
     path: '/user/:id',
     name: 'user-page',
-    component: UserPage
+    component: UserPage,
+    beforeEnter: ifAuthenticated
   },
   {
     path: '/user/:id/profile',
@@ -47,7 +54,8 @@ const routes = [
   {
     path: '/post-detail/:id',
     name: 'post-detail',
-    component: PostDetail
+    component: PostDetail,
+    beforeEnter: ifAuthenticated
   },
   {
     path: '/upload',
