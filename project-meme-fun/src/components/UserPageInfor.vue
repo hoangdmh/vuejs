@@ -3,7 +3,7 @@
     <div class="ass1-head-user__content">
       <div class="ass1-head-user__image">
         <a href="#">
-          <img src="/dist/images/cat-1634369_1920.jpg" alt />
+          <img v-bind:src="getAvatar()" alt />
         </a>
       </div>
       <div class="ass1-head-user__info">
@@ -15,9 +15,17 @@
             </i>
           </div>
           <div class="w-100"></div>
-          <a href="#" class="ass1-head-user__btn-follow ass1-btn">Theo dõi</a>
-          <a href="thay-doi-password.html" class="ass1-head-user__btn-follow ass1-btn">Đổi mật khẩu</a>
-          <a href="profile.html" class="ass1-head-user__btn-follow ass1-btn">Profile</a>
+          <a v-if="!isCurrentUser" href="#" class="ass1-head-user__btn-follow ass1-btn">Theo dõi</a>
+          <template v-else>
+            <router-link
+              v-bind:to="{name: 'change-password', params: { id: userInfor.USERID}}"
+              class="ass1-head-user__btn-follow ass1-btn"
+            >Đổi mật khẩu</router-link>
+            <router-link
+              v-bind:to="{name: 'user-profile', params: { id: userInfor.USERID}}"
+              class="ass1-head-user__btn-follow ass1-btn"
+            >Profile</router-link>
+          </template>
           <!-- <a href="#" class="ass1-head-user__btn-options ass1-btn-icon"><i class="icon-Options"></i></a> -->
         </div>
         <div class="ass1-head-user__info-statistic">
@@ -42,12 +50,31 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "user-page-infor",
   props: {
     userInfor: {
       type: Object,
       default: null
+    }
+  },
+  computed: {
+    ...mapGetters(["currentUser"]),
+    isCurrentUser() {
+      if (this.userInfor && this.currentUser) {
+        if (this.userInfor.USERID == this.currentUser.USERID) return true;
+      }
+      return false;
+    }
+  },
+  methods: {
+    getAvatar() {
+      if (this.userInfor && this.userInfor.profilepicture) {
+        return this.userInfor.profilepicture;
+      }
+      return "/dist/images/cat-1634369_1920.jpg";
     }
   }
 };
