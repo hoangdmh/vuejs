@@ -135,8 +135,44 @@ export default {
         ok: false,
         error: null
       }
-      console.log('getListPostByUserId', result.data);
     } catch (error) {
+      return {
+        ok: false,
+        error: error.message
+      }
+    }
+  },
+  async register({ commit, dispatch }, data) {
+    commit('SET_LOADING', true);
+    try {
+      var result = await axiosInstance.post('/member/register.php', data);
+      commit('SET_LOADING', false);
+      //console.log('register =>', result.data);
+      if (result.data.status === 200) {
+        //console.log('register =>', result.data);
+        let objLoginInfo = {
+          user: result.data.user,
+          token: result.data.token
+        }
+
+        commit('SET_USER_INFO', result.data.user);
+        commit('SET_LOGIN_INFO', objLoginInfo);
+        dispatch('getListPostByUserId', result.data.user.USERID);
+
+        return {
+          ok: true,
+          error: null,
+          data: result.data
+        }
+      } else {
+        return {
+          ok: false,
+          error: result.data.error
+        }
+      }
+
+    } catch (error) {
+      commit('SET_LOADING', false);
       return {
         ok: false,
         error: error.message
