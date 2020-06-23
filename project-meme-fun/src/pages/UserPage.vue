@@ -12,6 +12,7 @@
       <div class="grid-sizer"></div>
 
       <post-item
+        v-masonry-tile
         v-for="item in listPostOfUser"
         v-bind:key="item.PID"
         v-bind:post="item"
@@ -62,6 +63,9 @@ export default {
       if (resultUser.ok && resultPostUser.ok) {
         this.userInfor = resultUser.data;
         this.listPostOfUser = resultPostUser.posts.posts;
+
+        //data change
+        this.$redrawVueMasonry();
       } else {
         this.$router.push("/");
       }
