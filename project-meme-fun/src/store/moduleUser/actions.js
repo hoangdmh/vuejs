@@ -128,6 +128,7 @@ export default {
         commit('SET_USER_POST', objData);
         return {
           ok: true,
+          posts: result.data || [],
           error: null
         }
       }

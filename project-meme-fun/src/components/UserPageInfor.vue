@@ -1,5 +1,5 @@
 <template>
-  <div class="ass1-head-user">
+  <div class="ass1-head-user" v-if="userInfor">
     <div class="ass1-head-user__content">
       <div class="ass1-head-user__image">
         <a href="#">
@@ -9,7 +9,7 @@
       <div class="ass1-head-user__info">
         <div class="ass1-head-user__info-head">
           <div class="ass1-head-user__name">
-            <span>Trần Công Lực</span>
+            <span>{{userInfor.fullname}}</span>
             <i>
               <img src="/dist/fonts/emotion/svg/Verified.svg" alt />
             </i>
@@ -35,7 +35,7 @@
           </div>
           <!-- <div class="ass1-btn-icon"><i class="icon-Upvote"></i><span>Up Vote: 999999</span></div> -->
         </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>{{userInfor.description}}</p>
       </div>
     </div>
   </div>
@@ -43,7 +43,13 @@
 
 <script>
 export default {
-  name: "user-page-infor"
+  name: "user-page-infor",
+  props: {
+    userInfor: {
+      type: Object,
+      default: null
+    }
+  }
 };
 </script>
 
