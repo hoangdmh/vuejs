@@ -11,13 +11,16 @@
         <!-- if not login -->
         <router-link v-if="!isLogin" to="/login" class="ass1-header__btn-upload ass1-btn">Login</router-link>
         <!-- if already login -->
-        <div class="user-login" v-else>
-          <a href="/" class="user-avatar">
+        <div class="user-login" v-else-if="currentUser">
+          <router-link
+            v-bind:to="{name: 'user-page', params: {id: currentUser.USERID}}"
+            class="user-avatar"
+          >
             <span class="avatar">
               <img v-bind:src="getAvatar" alt="avatar" />
             </span>
             <span class="email">{{currentUser.email}}</span>
-          </a>
+          </router-link>
           <div v-on:click="handleLogout" class="ass1-header__btn-upload ass1-btn ml-1 logout">Logout</div>
         </div>
       </div>
