@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "user-profile",
@@ -94,6 +94,7 @@ export default {
     this.checkIsCurrentUser();
   },
   methods: {
+    ...mapActions(["updateProfile"]),
     checkIsCurrentUser() {
       if (this.userid && this.currentUser) {
         if (this.userid != this.currentUser.USERID) {
@@ -102,9 +103,39 @@ export default {
       }
     },
     handleEditProfile() {
-      console.log("Fullname", this.fullname);
-      console.log("Gender", this.gender);
-      console.log("Description", this.description);
+      if (!this.fullname) {
+        this.fullname = this.currentUser.fullname;
+      }
+      if (!this.description) {
+        this.description = this.currentUser.description;
+      }
+      if (!this.gender) {
+        this.gender = this.currentUser.gender;
+      }
+      // console.log("Fullname", this.fullname);
+      // console.log("Gender", this.gender);
+      // console.log("Description", this.description);
+
+      if (this.fullname && this.description && this.gender) {
+        let data = {
+          fullname: this.fullname,
+          description: this.description,
+          gender: this.gender
+        };
+
+        if (this.avatar.objFile) {
+          data.objFile = this.avatar.objFile;
+        }
+
+        this.updateProfile(data).then(res => {
+          console.log("res => ", res);
+          if (res.ok) {
+            alert("Update profile thanh cong");
+          } else {
+            alert(res.error);
+          }
+        });
+      }
     },
     uploadAvatar(e) {
       //console.log(e.target.files);

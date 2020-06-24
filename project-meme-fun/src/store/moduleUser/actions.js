@@ -179,5 +179,53 @@ export default {
         error: error.message
       }
     }
+  },
+  async updateProfile({ commit }, { fullname = '', description = '', gender = '', objFile = null }) {
+    commit('SET_LOADING', true);
+    try {
+      let bodyFormData = new FormData();
+
+      bodyFormData.append('fullname', fullname);
+      bodyFormData.append('description', description);
+      bodyFormData.append('gender', gender);
+
+      //for avatar
+      if (objFile) {
+        bodyFormData.append('avatar', objFile);
+      }
+
+      //config
+      let config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Authorization': 'Bearer ' + localStorage.getItem(CONFIG_ACCESS_TOKEN)
+        }
+      }
+
+      var result = await axiosInstance.post('/member/update.php', bodyFormData, config);
+      commit('SET_LOADING', false);
+
+      if (result.data.status === 200) {
+        commit('SET_CURRENT_USER', result.data.user);
+        return {
+          ok: true,
+          error: null,
+          user: result.data.user
+        }
+      } else {
+        return {
+          ok: false,
+          error: result.data.error
+        }
+      }
+
+
+    } catch (error) {
+      //commit('SET_LOADING', false);
+      return {
+        ok: false,
+        error: error.message
+      }
+    }
   }
 }
