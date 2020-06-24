@@ -9,6 +9,7 @@ import PostDetail from './pages/PostDetail'
 import PostUpload from './pages/PostUpload'
 import UserPage from './pages/UserPage'
 import UserProfile from './pages/UserProfile'
+import Search from './pages/Search'
 
 import {
   ifNotAuthenticated,
@@ -62,6 +63,11 @@ const routes = [
     path: '/upload',
     name: 'upload',
     component: PostUpload
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: Search
   }
 ]
 
