@@ -3,7 +3,7 @@
     <div class="ass1-head-user__content">
       <div class="ass1-head-user__image">
         <a href="#">
-          <img v-bind:src="getAvatar()" alt />
+          <img v-bind:src="getAvatar" alt />
         </a>
       </div>
       <div class="ass1-head-user__info">
@@ -31,7 +31,7 @@
         <div class="ass1-head-user__info-statistic">
           <div class="ass1-btn-icon">
             <i class="icon-Post"></i>
-            <span>Bài viết: 9999</span>
+            <span>Bài viết: {{countPost}}</span>
           </div>
           <div class="ass1-btn-icon">
             <i class="icon-Followers"></i>
@@ -58,6 +58,10 @@ export default {
     userInfor: {
       type: Object,
       default: null
+    },
+    countPost: {
+      type: Number,
+      default: 0
     }
   },
   computed: {
@@ -67,16 +71,15 @@ export default {
         if (this.userInfor.USERID == this.currentUser.USERID) return true;
       }
       return false;
-    }
-  },
-  methods: {
+    },
     getAvatar() {
       if (this.userInfor && this.userInfor.profilepicture) {
         return this.userInfor.profilepicture;
       }
       return "/dist/images/cat-1634369_1920.jpg";
     }
-  }
+  },
+  methods: {}
 };
 </script>
 

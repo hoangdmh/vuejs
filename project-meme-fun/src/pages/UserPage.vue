@@ -1,6 +1,6 @@
 <template>
   <div>
-    <user-page-infor v-bind:userInfor="userInfor" />
+    <user-page-infor v-bind:userInfor="userInfor" v-bind:countPost="countPost" />
     <div
       v-if="listPostOfUser && listPostOfUser.length"
       v-masonry
@@ -47,6 +47,15 @@ export default {
     UserPageInfor,
     PostItem
   },
+  computed: {
+    countPost() {
+      if (this.listPostOfUser.length && this.listPostOfUser) {
+        return this.listPostOfUser.length;
+      } else {
+        return 0;
+      }
+    }
+  },
   methods: {
     ...mapActions(["getUserById", "getListPostByUserId", "setLoading"]),
     async fetchAllData() {
@@ -70,8 +79,8 @@ export default {
         this.$router.push("/");
       }
 
-      console.log("resultUser", resultUser);
-      console.log("resultPostUser", resultPostUser);
+      // console.log("resultUser", resultUser);
+      // console.log("resultPostUser", resultPostUser);
     }
   },
   // Khi load lai trang

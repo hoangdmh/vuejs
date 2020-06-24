@@ -44,7 +44,8 @@ const routes = [
   {
     path: '/user/:id/profile',
     name: 'user-profile',
-    component: UserProfile
+    component: UserProfile,
+    beforeEnter: ifAuthenticated //login moi vao dc
   },
   {
     path: '/user/:id/password',
