@@ -79,4 +79,12 @@ export default {
 </script>
 
 <style>
-</style>
+mark {
+  background-color: yellow;
+  padding: 0;
+}
+.mark {
+  background-color: yellow;
+  padding: 0;
+}
+</style>>
