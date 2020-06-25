@@ -62,7 +62,8 @@ const routes = [
   {
     path: '/upload',
     name: 'upload',
-    component: PostUpload
+    component: PostUpload,
+    beforeEnter: ifAuthenticated //login moi vao dc
   },
   {
     path: '/search',
