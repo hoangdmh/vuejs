@@ -150,12 +150,12 @@ export default {
         if (url_image || obj_image.objFile) {
           let data = {
             post_content,
-            category: categories,
-            url_image
+            url_image,
+            category: categories
           };
 
           if (obj_image.objFile) {
-            data.objFile = obj_image.objFile;
+            data.obj_image = obj_image.objFile;
           }
 
           //console.log("data data => ", data);

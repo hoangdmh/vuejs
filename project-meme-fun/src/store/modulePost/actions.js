@@ -90,8 +90,8 @@ export default {
     try {
       let bodyFormData = new FormData();
 
-      bodyFormData.append('url_image', url_image);
       bodyFormData.append('category', category);
+      bodyFormData.append('url_image', url_image);
       bodyFormData.append('post_content', post_content);
 
       //for image
@@ -121,7 +121,8 @@ export default {
         return {
           ok: true,
           error: null,
-          data: result.data.data
+          data: result.data.data,
+          message: result.data.message,
         }
       } else {
         return {
