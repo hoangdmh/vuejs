@@ -40,10 +40,27 @@ export default {
       if (result.data.status === 200) {
         //console.log('Goi API Post detail thanh cong');
         // Goi tiep API User
-        var resultUser = await dispatch('getUserById', result.data.data.post.USERID);
-        //console.log('resultUser => ', resultUser);
+        var PromiseUser = dispatch('getUserById', result.data.data.post.USERID);
+
+        //goi tiep api list comment
+        var PromiseComments = dispatch('getListCommentByPostId', postId)
+
+
+        let [resultUser, resultComments] = await Promise.all([PromiseUser, PromiseComments])
+
+        let dataPostDetail = {
+          ...result.data.data,
+          comments: []
+        }
+        if (resultComments.ok) {
+          dataPostDetail.comments = resultComments
+        }
+        console.log('resultComments => ', resultComments);
+
+
         commit('SET_LOADING', false);
-        commit('POST_LIST_DETAIL', result.data.data);
+        commit('POST_LIST_DETAIL', dataPostDetail);
+
         return {
           ok: true,
           data: result.data.data,
@@ -133,6 +150,27 @@ export default {
 
     } catch (error) {
       commit('SET_LOADING', false);
+      return {
+        ok: false,
+        error: error.message
+      }
+    }
+  },
+  async getListCommentByPostId({ commit }, postid) {
+
+    try {
+      var result = await axiosInstance.get('/comment/comments.php?postid=' + postid);
+      if (result.data.status === 200) {
+        return {
+          ok: true,
+          comments: result.data.comments
+        }
+      } else {
+        return {
+          ok: false
+        }
+      }
+    } catch (error) {
       return {
         ok: false,
         error: error.message

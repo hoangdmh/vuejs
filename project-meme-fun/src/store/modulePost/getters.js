@@ -18,7 +18,8 @@ export default {
         },
         categories: {
           categories: state.postListDetail.categories
-        }
+        },
+        comments: state.postListDetail.comments
       }
       // console.log('State', state);
       // console.log('getters', getters);

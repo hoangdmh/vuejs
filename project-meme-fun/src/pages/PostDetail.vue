@@ -9,7 +9,7 @@
           <post-feeling v-bind:tagDetail="getDataPostDetail.categories" />
         </div>
         <post-comment-add />
-        <post-comments />
+        <post-comments v-bind:comments="getDataPostDetail.comments.comments" />
       </div>
     </div>
     <div class="col-lg-4">
