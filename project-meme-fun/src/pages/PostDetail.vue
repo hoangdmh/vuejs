@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-8">
       <!--section-->
-      <div class="ass1-section__list" v-if="getDataPostDetail.post && getDataPostDetail">
+      <div class="ass1-section__list" v-if="getDataPostDetail && getDataPostDetail.post">
         <div class="ass1-section">
           <post-item v-bind:post="getDataPostDetail.post" />
 

@@ -55,7 +55,7 @@ export default {
         if (resultComments.ok) {
           dataPostDetail.comments = resultComments
         }
-        console.log('resultComments => ', resultComments);
+        //console.log('resultComments => ', resultComments);
 
 
         commit('SET_LOADING', false);
@@ -171,6 +171,50 @@ export default {
         }
       }
     } catch (error) {
+      return {
+        ok: false,
+        error: error.message
+      }
+    }
+  },
+  async postComment({ commit, rootState }, { comment = '', postid = null }) {
+    commit('SET_LOADING', true);
+    try {
+      let data = {
+        comment,
+        postid
+      }
+      //config
+      let config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem(CONFIG_ACCESS_TOKEN)
+        }
+      }
+
+      var result = await axiosInstance.post('comment/add_new.php', data, config);
+      commit('SET_LOADING', false);
+      if (result.data.status === 200) {
+        let comment = {
+          ...result.data.body,
+          fullname: rootState.moduleUser.currentUser.fullname,
+          profilepicture: rootState.moduleUser.currentUser.profilepicture
+        }
+
+
+        commit('PUSH_LIST_COMMENT', comment)
+        console.log('comment', comment);
+        return {
+          ok: true,
+          comment: comment
+        }
+      } else {
+        return {
+          ok: false
+        }
+      }
+    } catch (error) {
+      commit('SET_LOADING', false);
       return {
         ok: false,
         error: error.message

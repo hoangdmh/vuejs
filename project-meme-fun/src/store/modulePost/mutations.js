@@ -7,5 +7,9 @@ export default {
   },
   POST_LIST_DETAIL(state, data) {
     state.postListDetail = data
+  },
+  PUSH_LIST_COMMENT(state, comment) {
+    console.log('PUSH_LIST_COMMENT', comment);
+    state.postListDetail.comments.push(comment)
   }
 }
