@@ -13,7 +13,11 @@
     "bootstrap": "^4.5.0",
     "bootstrap-vue": "^2.15.0",
     "firebase": "^7.15.5",
-    "vue": "^2.6.11"
+    "luxon": "^1.24.1",
+    "uuid": "^8.2.0",
+    "vue": "^2.6.11",
+    "vue-datetime": "^1.0.0-beta.13",
+    "weekstart": "^1.0.1"
   },
   "browserslist": [
     "> 1%",
