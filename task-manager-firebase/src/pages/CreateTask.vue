@@ -65,7 +65,11 @@
           </select>
         </div>
         <div class="col-xs-12 btn-submit-create">
-          <button class="btn btn-success" type="submit">Tạo mới một BackLog</button>
+          <button
+            v-on:click="handleCreateTask"
+            class="btn btn-success"
+            type="submit"
+          >Tạo mới một BackLog</button>
         </div>
       </div>
     </div>
@@ -73,8 +77,11 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 import { Datetime } from "vue-datetime";
 import { STATUS_CONFIG, PRIORITY_CONFIG, TEAM_CONFIG } from "../config/const";
+
 import PageTitle from "../components/PageTitle";
 
 export default {
@@ -99,6 +106,40 @@ export default {
       PRIORITY_CONFIG,
       TEAM_CONFIG
     };
+  },
+  methods: {
+    ...mapActions(["createTask"]),
+    handleCreateTask() {
+      let objData = {
+        auth: "hoangdm@gmail.com",
+        title: this.title,
+        description: this.description,
+        name: this.name,
+        start_at: this.start_at,
+        end_at: this.end_at,
+        status: this.status,
+        priority: this.priority,
+        team: this.team,
+        email_member: this.email_member
+      };
+      this.createTask(objData).then(res => {
+        if (res.ok) {
+          alert("Tao thanh cong");
+          this.resetData();
+        }
+      });
+    },
+    resetData() {
+      this.title = "";
+      this.description = "";
+      this.name = "";
+      this.start_at = null;
+      this.end_at = null;
+      this.status = 1;
+      this.priority = 1;
+      this.team = 1;
+      this.email_member = "";
+    }
   }
 };
 </script>

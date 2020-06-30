@@ -18,10 +18,10 @@ firebase.initializeApp(firebaseConfig);
 // Get a reference to the database service
 const database = firebase.database();
 
-database.ref('tasks/').set({
-  username: 'name edit',
-  email: 'email',
-  profile_picture: 'imageUrl'
-});
+// database.ref('tasks/').set({
+//   username: 'name edit',
+//   email: 'email',
+//   profile_picture: 'imageUrl'
+// });
 
 export default database;
