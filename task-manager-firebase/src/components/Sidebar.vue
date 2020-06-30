@@ -3,7 +3,9 @@
     <div class="page-title">
       <span>Thành viên</span>
     </div>
-    <ul class="list-members"></ul>
+    <ul class="list-members">
+      <li>luctc</li>
+    </ul>
   </div>
 </template>
 

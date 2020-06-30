@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Login from '../pages/Login';
+import Login from '../pages/Login.vue';
 import Register from '../pages/Register';
 import KanBanBoard from '../pages/KanBanBoard';
 import ListTasks from '../pages/ListTasks';
@@ -41,6 +41,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  mode: 'history',
   routes // short for `routes: routes`
 })
 
