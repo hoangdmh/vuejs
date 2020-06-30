@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router/index';
-import database from './config/firebaseConfig';
+import database from './config/firebase';
 
 import './plugins'
 import './assets/style.css'
