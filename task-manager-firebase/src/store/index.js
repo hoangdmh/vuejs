@@ -18,6 +18,12 @@ const store = new Vuex.Store({
     isLoading: false
   },
   getters: {
+    isLogin: state => {
+      if (state.currentUser.email !== '' && state.currentUser.uid !== '') {
+        return true
+      }
+      return false
+    },
     getListTaskFilter: state => {
       const listTasks = state.listTasks;
       let todo = [], inProgress = [], toVerify = [], done = [];
@@ -28,7 +34,7 @@ const store = new Vuex.Store({
           ...value
         };
 
-        console.log('value.status', value.objData.status);
+        //console.log('value.status', value.objData.status);
         if (value.objData.status === STATUS_CONFIG.TODO.value) {
           todo.push(data)
         } else if (value.objData.status === STATUS_CONFIG.IN_PROGRESS.value) {
@@ -68,6 +74,29 @@ const store = new Vuex.Store({
       commit('SET_LOADING', true);
       try {
         let result = await auth.createUserWithEmailAndPassword(email, password);
+        console.log('result', result);
+        let user = {
+          email,
+          uid: result.user.uid
+        }
+        commit('SET_CURRENT_USER', user);
+        commit('SET_LOADING', false);
+        return {
+          ok: true,
+          error: null
+        }
+      } catch (error) {
+        commit('SET_LOADING', false);
+        return {
+          ok: false,
+          error: error.message
+        }
+      }
+    },
+    async login({ commit }, { email, password }) {
+      commit('SET_LOADING', true);
+      try {
+        let result = await auth.signInWithEmailAndPassword(email, password);
         console.log('result', result);
         let user = {
           email,

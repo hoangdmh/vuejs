@@ -1,6 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import {
+  ifNotAuthenticated,
+  ifAuthenticated
+} from '../plugins/authenticate';
+
 import Login from '../pages/Login.vue';
 import Register from '../pages/Register';
 import KanBanBoard from '../pages/KanBanBoard';
@@ -14,6 +19,7 @@ const routes = [
   {
     path: '/',
     component: KanBanBoard,
+    beforeEnter: ifAuthenticated,
     children: [
       {
         path: '',
@@ -32,11 +38,13 @@ const routes = [
   }, {
     path: '/login',
     name: 'login-page',
-    component: Login
+    component: Login,
+    beforeEnter: ifNotAuthenticated
   }, {
     path: '/register',
     name: 'register-page',
-    component: Register
+    component: Register,
+    beforeEnter: ifNotAuthenticated
   }
 ]
 
