@@ -24,4 +24,12 @@ const database = firebase.database();
 //   profile_picture: 'imageUrl'
 // });
 
+// var taskRef = database.ref('tasks');
+// taskRef.on('value', function (snapshot) {
+//   snapshot.forEach(function (childSnapshot) {
+//     var childData = childSnapshot.val();
+//     console.log(childData);
+//   });
+// })
+
 export default database;

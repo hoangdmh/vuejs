@@ -13,6 +13,13 @@ import database from './config/firebase';
 import './plugins'
 import './assets/style.css'
 
+// get data from firebase
+var taskRef = database.ref('tasks');
+taskRef.on('value', function (snapshot) {
+  let data = snapshot.toJSON();
+  store.commit('SET_LIST_TASKS', data)
+})
+
 new Vue({
   el: '#app',
   router,
