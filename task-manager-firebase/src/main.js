@@ -8,7 +8,7 @@ import { Datetime } from 'vue-datetime'
 import 'vue-datetime/dist/vue-datetime.css'
 Vue.use(Datetime)
 
-import { database } from './config/firebase';
+import { database, auth } from './config/firebase';
 
 import './plugins'
 import './assets/style.css'
@@ -19,6 +19,26 @@ taskRef.on('value', function (snapshot) {
   let data = snapshot.toJSON();
   store.commit('SET_LIST_TASKS', data)
 })
+
+auth.onAuthStateChanged(function (user) {
+  if (user) {
+    let data = {
+      email: user.email,
+      uid: user.uid
+    }
+    store.commit('SET_CURRENT_USER', data)
+    router.push('/')
+    // ...
+  } else {
+    // User is signed out.
+    let data = {
+      email: '',
+      uid: ''
+    }
+    store.commit('SET_CURRENT_USER', data)
+    router.push('/login')
+  }
+});
 
 new Vue({
   el: '#app',

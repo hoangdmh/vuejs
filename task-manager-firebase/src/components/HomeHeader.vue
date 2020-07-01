@@ -3,19 +3,19 @@
     <div class="container">
       <ul>
         <li>
-          <a href="/">Trang Chủ</a>
+          <router-link to="/">Trang Chủ</router-link>
         </li>
         <li>
-          <a href="/">Dự án</a>
+          <router-link to="/create">Dự án</router-link>
         </li>
       </ul>
       <ul class="right">
-        <li>
-          Đăng nhập với
-          <a href="/">example@gmail.com</a>
+        <li v-if="currentUser.email">
+          Đăng nhập với:
+          <router-link class="user" to="/">{{currentUser.email}}</router-link>
         </li>
         <li>
-          <a href="/">Đăng xuất</a>
+          <a v-on:click.prevent="handleLogout" href="/">Đăng xuất</a>
         </li>
       </ul>
     </div>
@@ -23,10 +23,23 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+import { auth } from "../config/firebase";
 export default {
-  name: "home-header"
+  name: "home-header",
+  computed: {
+    ...mapState(["currentUser"])
+  },
+  methods: {
+    handleLogout() {
+      auth.signOut();
+    }
+  }
 };
 </script>
 
 <style>
+.user {
+  color: #fff;
+}
 </style>
