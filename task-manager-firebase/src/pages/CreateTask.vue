@@ -58,10 +58,12 @@
         <div class="col-xs-6 input-group">
           <label>Thành viên đảm nhận</label>
           <select class="input-group input-select" v-model="email_member">
-            <option value="luctc">@luctc</option>
-            <option value="khang">@khang</option>
-            <option value="nam">@nam</option>
-            <option value="tam">@tam</option>
+            <option value disabled>Thanh vien</option>
+            <option
+              v-for="(email, index) in getListEmailUser"
+              v-bind:key="index"
+              v-bind:value="email"
+            >{{email.split('@')[0]}}</option>
           </select>
         </div>
         <div class="col-xs-12 btn-submit-create">
@@ -77,7 +79,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 import { Datetime } from "vue-datetime";
 import { STATUS_CONFIG, PRIORITY_CONFIG, TEAM_CONFIG } from "../config/const";
@@ -107,6 +109,9 @@ export default {
       TEAM_CONFIG
     };
   },
+  computed: {
+    ...mapGetters(["getListEmailUser"])
+  },
   methods: {
     ...mapActions(["createTask"]),
     handleCreateTask() {
@@ -125,7 +130,7 @@ export default {
       this.createTask(objData).then(res => {
         if (res.ok) {
           alert("Tao thanh cong");
-          this.resetData();
+          //this.resetData();
         }
       });
     },

@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { v4 as uuidv4 } from 'uuid';
-import database from '../config/firebase';
 import { STATUS_CONFIG } from '../config/const';
-import { auth } from '../config/firebase';
+import { auth, userRef, database } from '../config/firebase';
 
 Vue.use(Vuex)
 
@@ -15,6 +14,7 @@ const store = new Vuex.Store({
       uid: ''
     },
     listTasks: {},
+    listUser: {},
     isLoading: false
   },
   getters: {
@@ -46,11 +46,25 @@ const store = new Vuex.Store({
         }
       }
       return { todo, inProgress, toVerify, done }
+    },
+    getListEmailUser: state => {
+      let listUser = state.listUser
+      let arrEmail = [];
+      for (let key in listUser) {
+        let value = listUser[key];
+        arrEmail.push(value.email)
+      }
+      return arrEmail;
     }
   },
   actions: {
     setLoading({ commit }, loading = false) {
       commit('SET_LOADING', loading)
+    },
+    onListenerUser({ commit }) {
+      userRef.on('value', function (snapshot) {
+        commit('SET_LIST_USERS', snapshot.toJSON())
+      })
     },
     async createTask({ commit }, objData) {
       let taskId = uuidv4();
@@ -74,7 +88,11 @@ const store = new Vuex.Store({
       commit('SET_LOADING', true);
       try {
         let result = await auth.createUserWithEmailAndPassword(email, password);
-        console.log('result', result);
+        await userRef.child(result.user.uid).set({
+          email: email,
+          role: 'member'
+        });
+        //console.log('result', result);
         let user = {
           email,
           uid: result.user.uid
@@ -97,7 +115,7 @@ const store = new Vuex.Store({
       commit('SET_LOADING', true);
       try {
         let result = await auth.signInWithEmailAndPassword(email, password);
-        console.log('result', result);
+        //console.log('result', result);
         let user = {
           email,
           uid: result.user.uid
@@ -126,6 +144,9 @@ const store = new Vuex.Store({
     },
     SET_CURRENT_USER: (state, user) => {
       state.currentUser = user
+    },
+    SET_LIST_USERS: (state, data) => {
+      state.listUser = data
     }
   }
 })

@@ -10,7 +10,7 @@
       Giai đoạn:
       <span>{{ HASH_TEAM_CONFIG[task.objData.team] }}</span>
     </div>
-    <div class="assign">@{{task.objData.email_member}}</div>
+    <div class="assign">@{{task.objData.email_member.split('@')[0]}}</div>
   </div>
 </template>
 

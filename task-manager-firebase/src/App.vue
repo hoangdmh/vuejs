@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 import Loading from "./components/Loading";
 export default {
   name: "app",
@@ -18,6 +18,12 @@ export default {
   },
   computed: {
     ...mapState(["isLoading"])
+  },
+  created() {
+    this.onListenerUser();
+  },
+  methods: {
+    ...mapActions(["onListenerUser"])
   }
 };
 </script>

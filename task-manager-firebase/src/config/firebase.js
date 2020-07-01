@@ -34,5 +34,6 @@ export const database = firebase.database();
 // })
 
 export const auth = firebase.auth();
+export const userRef = database.ref('users');
 
 //export default database;
