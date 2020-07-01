@@ -1,6 +1,7 @@
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from "firebase/app";
 import 'firebase/database';
+import 'firebase/auth';
 
 import firebaseConfig from './firebaseConfig';
 
@@ -16,7 +17,7 @@ import firebaseConfig from './firebaseConfig';
 firebase.initializeApp(firebaseConfig);
 
 // Get a reference to the database service
-const database = firebase.database();
+export const database = firebase.database();
 
 // database.ref('tasks/').set({
 //   username: 'name edit',
@@ -32,4 +33,6 @@ const database = firebase.database();
 //   });
 // })
 
-export default database;
+export const auth = firebase.auth();
+
+//export default database;

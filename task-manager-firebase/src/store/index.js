@@ -3,12 +3,17 @@ import Vuex from 'vuex'
 import { v4 as uuidv4 } from 'uuid';
 import database from '../config/firebase';
 import { STATUS_CONFIG } from '../config/const';
+import { auth } from '../config/firebase';
 
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
   state: {
+    currentUser: {
+      email: '',
+      uid: ''
+    },
     listTasks: {},
     isLoading: false
   },
@@ -57,6 +62,30 @@ const store = new Vuex.Store({
           error: error.message
         }
       }
+    },
+    async register({ commit }, { email, password }) {
+      //console.log('register', email, password, repassword);
+      commit('SET_LOADING', true);
+      try {
+        let result = await auth.createUserWithEmailAndPassword(email, password);
+        console.log('result', result);
+        let user = {
+          email,
+          uid: result.user.uid
+        }
+        commit('SET_CURRENT_USER', user);
+        commit('SET_LOADING', false);
+        return {
+          ok: true,
+          error: null
+        }
+      } catch (error) {
+        commit('SET_LOADING', false);
+        return {
+          ok: false,
+          error: error.message
+        }
+      }
     }
   },
   mutations: {
@@ -65,6 +94,9 @@ const store = new Vuex.Store({
     },
     SET_LIST_TASKS: (state, data) => {
       state.listTasks = data
+    },
+    SET_CURRENT_USER: (state, user) => {
+      state.currentUser = user
     }
   }
 })

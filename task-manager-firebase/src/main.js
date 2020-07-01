@@ -8,7 +8,7 @@ import { Datetime } from 'vue-datetime'
 import 'vue-datetime/dist/vue-datetime.css'
 Vue.use(Datetime)
 
-import database from './config/firebase';
+import { database } from './config/firebase';
 
 import './plugins'
 import './assets/style.css'

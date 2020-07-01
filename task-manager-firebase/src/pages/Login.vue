@@ -13,16 +13,16 @@
         <form id="form-signup" class="form-signin">
           <div class="form-group">
             <!-- <label>Email</label> -->
-            <input type="email" class="form-control" placeholder="Địa chỉ email" />
+            <input v-model="email" type="email" class="form-control" placeholder="Địa chỉ email" />
           </div>
           <div class="form-group">
             <!-- <label>Mật khẩu</label> -->
-            <input type="password" class="form-control" placeholder="Mật khẩu" />
+            <input v-model="password" type="password" class="form-control" placeholder="Mật khẩu" />
           </div>
           <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Đăng nhập</button>
         </form>
 
-        <a href="#" class="register">Đăng ký một tài khoản</a>
+        <router-link to="/register" class="register">Đăng ký một tài khoản</router-link>
       </div>
     </div>
   </div>
@@ -30,7 +30,13 @@
 
 <script>
 export default {
-  name: "login"
+  name: "login",
+  data() {
+    return {
+      email: "",
+      password: ""
+    };
+  }
 };
 </script>
 
