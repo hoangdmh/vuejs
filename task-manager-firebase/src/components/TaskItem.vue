@@ -8,13 +8,14 @@
     </div>
     <div class="phase">
       Giai đoạn:
-      <span>{{task.objData.team}}</span>
+      <span>{{ HASH_TEAM_CONFIG[task.objData.team] }}</span>
     </div>
     <div class="assign">@{{task.objData.email_member}}</div>
   </div>
 </template>
 
 <script>
+import { HASH_TEAM_CONFIG } from "../config/const";
 export default {
   name: "task-item",
   props: {
@@ -22,6 +23,11 @@ export default {
       type: Object,
       default: null
     }
+  },
+  data() {
+    return {
+      HASH_TEAM_CONFIG
+    };
   },
   computed: {
     dateFormat() {
