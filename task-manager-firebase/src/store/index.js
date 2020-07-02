@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { v4 as uuidv4 } from 'uuid';
 import { STATUS_CONFIG } from '../config/const';
-import { auth, userRef, database } from '../config/firebase';
+import { auth, userRef, database, taskRef } from '../config/firebase';
 
 Vue.use(Vuex)
 
@@ -124,6 +124,31 @@ const store = new Vuex.Store({
         commit('SET_LOADING', false);
         return {
           ok: true,
+          error: null
+        }
+      } catch (error) {
+        commit('SET_LOADING', false);
+        return {
+          ok: false,
+          error: error.message
+        }
+      }
+    },
+    async getTaskById({ commit }, id) {
+      commit('SET_LOADING', true);
+      try {
+        let result = await taskRef.child(id).once('value');
+        commit('SET_LOADING', false);
+        console.log('result', result.val());
+        if (result.val()) {
+          return {
+            ok: true,
+            task: result.val()
+          }
+        }
+        return {
+          ok: false,
+          task: null,
           error: null
         }
       } catch (error) {

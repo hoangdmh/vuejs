@@ -1,7 +1,13 @@
 <template>
-  <div class="backlogs-item">
+  <div class="backlogs-item" v-if="task">
     <div class="project">{{task.objData.name}}</div>
-    <div class="title">{{task.objData.title}}</div>
+    <router-link
+      v-bind:to="{name: 'edit-task-page', params: {id: task.id}}"
+      tag="div"
+      class="title"
+      activeClass
+      exactActiveClass
+    >{{task.objData.title}}</router-link>
     <div class="due-date">
       Deadline:
       <span>{{dateFormat}}</span>

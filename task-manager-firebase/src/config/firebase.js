@@ -35,5 +35,6 @@ export const database = firebase.database();
 
 export const auth = firebase.auth();
 export const userRef = database.ref('users');
+export const taskRef = database.ref('tasks');
 
 //export default database;
