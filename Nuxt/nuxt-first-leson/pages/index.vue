@@ -2,29 +2,33 @@
   <div class="container">
     <div>
       <Logo />
-      <h1 class="title">hello-nuxt</h1>
+      <h1 class="title">
+        nuxt-first-leson
+      </h1>
       <div class="links">
         <a
           href="https://nuxtjs.org/"
           target="_blank"
           rel="noopener noreferrer"
           class="button--green"
-        >Documentation</a>
+        >
+          Documentation
+        </a>
         <a
           href="https://github.com/nuxt/nuxt.js"
           target="_blank"
           rel="noopener noreferrer"
           class="button--grey"
-        >GitHub</a>
+        >
+          GitHub
+        </a>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
-
-export default Vue.extend({});
+<script>
+export default {}
 </script>
 
 <style>
@@ -38,8 +42,16 @@ export default Vue.extend({});
 }
 
 .title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family:
+    'Quicksand',
+    'Source Sans Pro',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;
