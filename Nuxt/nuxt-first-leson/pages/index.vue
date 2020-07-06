@@ -1,21 +1,6 @@
 <template>
   <div class="container">
-    <header>
-      <ul>
-        <li>
-          <nuxt-link to="/">Home</nuxt-link>
-        </li>
-        <li>
-          <nuxt-link to="/desks">Desk</nuxt-link>
-        </li>
-        <li>
-          <nuxt-link to="/profile">Profile</nuxt-link>
-        </li>
-        <li>
-          <nuxt-link to="/settings">Settings</nuxt-link>
-        </li>
-      </ul>
-    </header>
+    <h2>Index page</h2>
   </div>
 </template>
 
