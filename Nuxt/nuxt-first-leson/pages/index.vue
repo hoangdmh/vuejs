@@ -4,8 +4,15 @@
       <ul>
         <li>
           <nuxt-link to="/">Home</nuxt-link>
+        </li>
+        <li>
           <nuxt-link to="/desks">Desk</nuxt-link>
+        </li>
+        <li>
           <nuxt-link to="/profile">Profile</nuxt-link>
+        </li>
+        <li>
+          <nuxt-link to="/settings">Settings</nuxt-link>
         </li>
       </ul>
     </header>
@@ -18,8 +25,12 @@ export default {};
 
 <style lang="scss" scoped>
 .container {
-  .title {
-    color: red;
+  ul {
+    display: flex;
+    li {
+      margin-right: 15px;
+      list-style-type: none;
+    }
   }
 }
 </style>>
