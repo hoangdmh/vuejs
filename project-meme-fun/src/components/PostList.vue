@@ -16,6 +16,7 @@
 import PostItem from "./PostItem";
 import { mapGetters, mapActions } from "vuex";
 import { PAGE_SIZE, CURRENT_PAGE } from "../constants";
+//import store from "../store";
 
 export default {
   name: "post-list",
@@ -48,7 +49,9 @@ export default {
         currPage: this.currPage,
         tagIndex: this.tagIndex
       };
-      this.getListPostHasPaging(obj);
+      //this.getListPostHasPaging(obj);
+      //store.dispatch("getListPostHasPaging", obj);
+      this.$store.dispatch("getListPostHasPaging", obj);
     }
   }
 };

@@ -6,6 +6,7 @@ export default {
   async getListPostHasPaging({ commit }, { pagesize = PAGE_SIZE, currPage = CURRENT_PAGE, tagIndex = null }) {
     commit('SET_LOADING', true);
     try {
+      // truyen data theo dang params trong axios, khong can noi chuoi
       var config = {
         params: {
           pagesize,
