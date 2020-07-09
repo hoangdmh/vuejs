@@ -5,7 +5,20 @@
 </template>
 
 <script>
-export default {};
+export default {
+  head() {
+    return {
+      title: "Schedule title",
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: "Schedule page description"
+        }
+      ]
+    };
+  }
+};
 </script>
 
 <style lang="scss" scoped>
