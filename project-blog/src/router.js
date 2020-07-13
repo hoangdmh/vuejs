@@ -34,6 +34,7 @@ const routes = [
     component: Login
   },
   {
+    // dynamic router, start with a colon ":"
     path: '/blog-detail/:title.:id',
     name: 'blog-detail',
     component: BlogDetail,

@@ -62,5 +62,12 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.nav-item {
+  &.active {
+    a {
+      text-decoration: underline;
+    }
+  }
+}
 </style>

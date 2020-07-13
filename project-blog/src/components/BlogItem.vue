@@ -16,7 +16,8 @@
       <p class="post-meta">
         Posted by
         <a href="#">{{ blog.fullName }}</a>
-        {{ blog.create_at.getFullYear() + '/' + `${blog.create_at.getMonth() + 1}` + '/' + blog.create_at.getDate()}}
+        <!-- {{ blog.create_at.getFullYear() + '/' + `${blog.create_at.getMonth() + 1}` + '/' + blog.create_at.getDate()}} -->
+        {{`${blog.create_at.getFullYear()}/${blog.create_at.getMonth() + 1}/${blog.create_at.getDate()}`}}
       </p>
       <hr />
     </div>
